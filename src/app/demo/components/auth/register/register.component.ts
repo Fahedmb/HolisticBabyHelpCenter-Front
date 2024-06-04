@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
-import Swal from "sweetalert2";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
+import { RegisterService } from './register.service'; // Correct import for RegisterService
+import Swal from 'sweetalert2';
 
 @Component({
-    selector: 'app-login',
+    selector: 'app-register',
     templateUrl: './register.component.html',
     styles: [`
         :host ::ng-deep .pi-eye,
@@ -15,16 +14,33 @@ import {Router} from "@angular/router";
             color: var(--primary-color) !important;
         }
     `],
-
-
 })
 export class RegisterComponent {
+    registerRequest: any = {
+        email: '',
+        firstName: '',
+        lastName: '',
+        phone: '',
+        password: ''
+    };
 
-    email = new FormControl('', [Validators.required,Validators.email]);
-    password = new FormControl('', [Validators.required]);
-    constructor() { }
+    constructor(private registerService: RegisterService, private router: Router) { }
+
     onRegister() {
-
+        if (this.registerRequest.email && this.registerRequest.password && this.registerRequest.firstName && this.registerRequest.lastName && this.registerRequest.phone) {
+            this.registerService.register(this.registerRequest).subscribe(
+                response => {
+                    console.log('User registered successfully', response);
+                    Swal.fire('Success', 'User registered successfully!', 'success');
+                    this.router.navigate(['/auth/login']);
+                },
+                error => {
+                    console.error('Error registering user', error);
+                    Swal.fire('Error', 'There was an error registering the user. Please try again.', 'error');
+                }
+            );
+        } else {
+            Swal.fire('Error', 'Please fill in all fields.', 'error');
+        }
     }
-
 }

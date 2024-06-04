@@ -4,28 +4,31 @@
             <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
                 <div class="text-center mb-5">
                     <img src="https://www.holistic-babe.fr/wp-content/uploads/2024/03/cropped-cropped-Logo-holistic-babe-glow-up.png" alt="Image" height="50" class="mb-3">
-
                 </div>
 
-                <div>
-                    <label for="email1" class="block text-900 text-xl font-medium mb-2">Email</label>
-                    <input id="email1" [ngModel]="email.value"  (ngModelChange)="email.setValue($event)" type="email" placeholder="Email address" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
-                    <label for="FirstName" class="block text-900 text-xl font-medium mb-2">Firstname</label>
-                    <input id="FirstName" [ngModel]="email.value"  (ngModelChange)="email.setValue($event)" type="email" placeholder="Firstname" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
-                    <label for="LastName" class="block text-900 text-xl font-medium mb-2">Lastname</label>
-                    <input id="LastName" [ngModel]="email.value"  (ngModelChange)="email.setValue($event)" type="email" placeholder="Lastname" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
-                    <label for="Phone" class="block text-900 text-xl font-medium mb-2">Phone</label>
-                    <input id="Phone" [ngModel]="email.value"  (ngModelChange)="email.setValue($event)" type="email" placeholder="Phone number" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
+                <form (ngSubmit)="onRegister()">
+                    <div>
+                        <label for="email1" class="block text-900 text-xl font-medium mb-2">Email</label>
+                        <input id="email1" [(ngModel)]="registerRequest.email" name="email" type="email" placeholder="Email address" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
 
-                    <label for="password1" class="block text-900 font-medium text-xl mb-2">Password</label>
-                    <p-password id="password1" [ngModel]="password.value"  (ngModelChange)="password.setValue($event)"  placeholder="Password" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"></p-password>
+                        <label for="FirstName" class="block text-900 text-xl font-medium mb-2">Firstname</label>
+                        <input id="FirstName" [(ngModel)]="registerRequest.firstName" name="firstName" type="text" placeholder="Firstname" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
 
-                    <div class="flex align-items-center justify-content-between mb-5 gap-5">
+                        <label for="LastName" class="block text-900 text-xl font-medium mb-2">Lastname</label>
+                        <input id="LastName" [(ngModel)]="registerRequest.lastName" name="lastName" type="text" placeholder="Lastname" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
 
-                        <a class="font-medium no-underline ml-2 text-right cursor-pointer" routerLink="/auth/login/forgot" style="color: var(--primary-color)">Login?</a>
+                        <label for="Phone" class="block text-900 text-xl font-medium mb-2">Phone</label>
+                        <input id="Phone" [(ngModel)]="registerRequest.phone" name="phone" type="text" placeholder="Phone number" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
+
+                        <label for="password1" class="block text-900 font-medium text-xl mb-2">Password</label>
+                        <p-password id="password1" [(ngModel)]="registerRequest.password" name="password" placeholder="Password" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"></p-password>
+
+                        <div class="flex align-items-center justify-content-between mb-5 gap-5">
+                            <a class="font-medium no-underline ml-2 text-right cursor-pointer" routerLink="/auth/login" style="color: var(--primary-color)">Login?</a>
+                        </div>
+                        <button pButton pRipple label="Sign Up" class="w-full p-3 text-xl" type="submit"></button>
                     </div>
-                    <button pButton pRipple label="Sign Up" class="w-full p-3 text-xl" ></button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
